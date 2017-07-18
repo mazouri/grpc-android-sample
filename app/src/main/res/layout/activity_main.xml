@@ -6,30 +6,28 @@
     android:layout_height="match_parent"
     tools:context="com.mazouri.grpc_android_sample.MainActivity">
 
-    <LinearLayout
-        android:id="@+id/layout_server_info"
-        android:layout_width="0dp"
+    <EditText
+        android:id="@+id/main_edit_server_host"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp">
+        android:imeOptions="actionNext"
+        android:text="10.75.75.106" />
 
-        <EditText
-            android:id="@+id/main_edit_server_host"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="edit_label_server_host"
-            android:inputType="textWebEditText"/>
+    <EditText
+        android:id="@+id/main_edit_server_port"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_edit_server_host"
+        android:imeOptions="actionNext"
+        android:text="8080" />
 
-        <EditText
-            android:id="@+id/main_edit_server_port"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:hint="edit_label_server_port"
-            android:inputType="number"
-            />
-    </LinearLayout>
+    <EditText
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_edit_server_port"
+        android:imeOptions="actionDone"
+        android:hint="edit message" />
 
     <Button
         android:id="@+id/main_button_send_request"
@@ -37,20 +35,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="hello_server"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
+        android:text="hello_server" />
 
     <TextView
         android:id="@+id/main_text_log"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layout_server_info"
         android:layout_above="@id/main_button_send_request"
-        android:gravity="bottom"
+        android:layout_below="@id/message"
         android:freezesText="true"
-        android:text="hello_world"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp" />
+        android:gravity="bottom"
+        android:text="hello_world" />
 
 </RelativeLayout>

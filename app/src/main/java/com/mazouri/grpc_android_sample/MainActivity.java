@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.main_edit_server_port)
     EditText mServerPortEditText;
 
+    @Bind(R.id.message)
+    EditText mMessageToSend;
+
     @Bind(R.id.main_text_log)
     TextView mLogText;
 
@@ -81,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
         private String mHost = "";
         private int mPort = -1;
+        private String mMessage;
 
         @Override
         protected void onPreExecute () {
@@ -102,6 +106,12 @@ public class MainActivity extends AppCompatActivity {
                 log("ERROR: empty port");
                 cancel(true);
                 return;
+            }
+
+            mMessage = mMessageToSend.getText().toString();
+
+            if (TextUtils.isEmpty(mMessage)) {
+                mMessage = "Default message";
             }
 
             try {
@@ -126,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                     mChannel = ManagedChannelBuilder.forAddress(mHost, mPort).usePlaintext(true).build();
                 }
                 GreeterGrpc.GreeterBlockingStub greeterStub = GreeterGrpc.newBlockingStub(mChannel);
-                HelloRequest helloRequest = HelloRequest.newBuilder().setName("Android").build();
+                HelloRequest helloRequest = HelloRequest.newBuilder().setName(mMessage).build();
 
                 HelloResponse helloResponse = greeterStub.sayHello(helloRequest);
                 return "SERVER: " + helloResponse.getMessage();
